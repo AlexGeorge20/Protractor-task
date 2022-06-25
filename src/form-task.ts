@@ -238,11 +238,27 @@ it('Transformed text',async function(){
     })
 })
 
-// // CHECKBOX
-// it('Checkbox',async function(){
-//         element(by.model('checked')).click()
-//         browser.sleep(2000);
-// })
+// // CHECKBOX---------------------------------------------------------
+it('Checkbox',async function(){
+    browser.get("http://www.protractortest.org/testapp/ng1/#/animation");
+       
+        let a=await element(by.id('toggledNode')).isPresent()
+        let b=await element(by.id('toggledNode')).isDisplayed()
+        console.log("PRESENT",a);
+        console.log("DISPLAYED",b);
+        element(by.id('toggledNode')).getText().then((text)=>{
+            console.log("TEXT",text);
+            expect(text).toBe('I exist!')
+       })
+    
+       element(by.id('checkbox')).click()
+       let c=await element(by.id('toggledNode')).isPresent()
+    
+       console.log("PRESENT",c);
+    expect(c).toBe(false)
+    
+        browser.sleep(2000);
+})
 
 })
 
