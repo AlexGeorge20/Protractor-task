@@ -259,6 +259,49 @@ it('Checkbox',async function(){
     
         browser.sleep(2000);
 })
+   // // CHECKBOXES-----------------------------------------------------
+it('Checkboxes',async function(){
+    element(by.model('show')).click()
+   let a=await  element(by.id('shower')).isPresent()
+   let b=await  element(by.id('shower')).isDisplayed()
+   console.log("PRESENT",a);
+   console.log("DISPLAYED",b);
+   expect(b).toBe(false)
+
+   element(by.model('disabled')).click()
+   let c=await element(by.id('disabledButton')).isPresent()
+   let d=await element(by.id('disabledButton')).isDisplayed()
+   console.log("DUMMY PRESENT",c);
+   console.log("DUMMY DISPLAYED",d);
+   let e=await element(by.id('disabledButton')).getAttribute('disabled')
+   console.log("DISABLED",e);
+   expect(e).toBe('true')
+   
+   element(by.model('check.w')).click()
+   element(by.id('letterlist')).getText().then((w)=>{
+       console.log("Txt",w);
+       expect(w).toBe('w')
+       })
+    element(by.model('check.x')).click()
+    element(by.id('letterlist')).getText().then((x)=>{
+        console.log("Txt",x);
+        expect(x).toBe('wx')
+        })
+    element(by.model('check.w')).click()
+    element(by.id('letterlist')).getText().then((falsex)=>{
+        console.log("Txt",falsex);
+        expect(falsex).toBe('falsex')
+        })
+    element(by.model('check.x')).click()
+    element(by.id('letterlist')).getText().then((falsefalse)=>{
+        console.log("Txt",falsefalse);
+        expect(falsefalse).toBe('falsefalse')
+        })
+
+    browser.sleep(2000)
+
+
+})
 
 })
 
